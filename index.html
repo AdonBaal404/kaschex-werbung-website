@@ -1,22 +1,113 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KASCHEX WERBUNG</title>
   <style>
-    body { font-family: Arial, sans-serif; margin:0; background:#f7f9fb; color:#111; text-align:center; }
-    header { background:#0ea5e9; color:white; padding:2rem; font-size:2rem; font-weight:bold; }
-    section { max-width:800px; margin:3rem auto; padding:1rem; }
-    footer { background:#eee; padding:1rem; font-size:0.9rem; color:#555; }
+    :root {
+      --brand: #0ea5e9;
+      --brand-dark: #007bbf;
+      --bg: #f7f9fb;
+      --text: #0b1520;
+      --muted: #5c6b79;
+    }
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--brand), var(--brand-dark));
+      color: white;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: .5rem;
+    }
+    section {
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+    }
+    h2 {
+      color: var(--brand-dark);
+      margin-bottom: 1rem;
+    }
+    .leistungen {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    }
+    .card h3 {margin-bottom:.5rem;}
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .9rem;
+    }
+    footer a {color: var(--brand); text-decoration:none;}
   </style>
 </head>
 <body>
-  <header>KASCHEX WERBUNG</header>
+
+  <header>
+    <h1>KASCHEX WERBUNG</h1>
+    <p>Wir rollen deine Marke aus – seit 1995</p>
+  </header>
+
   <section>
-    <h2>Fahrzeugbeschriftungen · Schilder · Schaufenster</h2>
-    <p>Individuelle Werbelösungen – modern, klar, professionell.</p>
+    <h2>Über uns</h2>
+    <p>KASCHEX WERBUNG ist Ihr Partner für hochwertige Beschriftungen, Folienlösungen und Werbetechnik. Mit jahrzehntelanger Erfahrung und Liebe zum Detail gestalten wir Fahrzeuge, Schaufenster, Schilder und vieles mehr.</p>
   </section>
-  <footer>© KASCHEX WERBUNG</footer>
+
+  <section>
+    <h2>Leistungen</h2>
+    <div class="leistungen">
+      <div class="card">
+        <h3>Fahrzeugbeschriftung</h3>
+        <p>Individuelle Fahrzeugbeklebungen – mobil werben und auffallen.</p>
+      </div>
+      <div class="card">
+        <h3>Schilder & Banner</h3>
+        <p>Vom Firmenschild bis zum Großformatbanner – robust und sichtbar.</p>
+      </div>
+      <div class="card">
+        <h3>Schaufensterfolien</h3>
+        <p>Gestaltung und Sichtschutz für Ihre Ladenfront – kreativ & praktisch.</p>
+      </div>
+      <div class="card">
+        <h3>Sonnenschutz & Effektfolien</h3>
+        <p>Komfort und Design durch funktionale Hochleistungsfolien.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Kontakt</h2>
+    <p>Adresse: Kassel und Umgebung<br>
+    Telefon: 0561 / 123456<br>
+    E-Mail: info@kaschex-werbung.de</p>
+  </section>
+
+  <footer>
+    <p>© KASCHEX WERBUNG · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></p>
+  </footer>
+
 </body>
 </html>
