@@ -1,71 +1,73 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>KASCHEX WERBUNG</title>
+
+  <!-- Google Font Inter -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* --- Animation Verzögerungen für Blur-Slogan --- */
-    .slogan-blur span:nth-child(1) { animation-delay: 0s; }
-    .slogan-blur span:nth-child(2) { animation-delay: 0.1s; }
-    .slogan-blur span:nth-child(3) { animation-delay: 0.2s; }
-    .slogan-blur span:nth-child(4) { animation-delay: 0.3s; }
-    .slogan-blur span:nth-child(5) { animation-delay: 0.4s; }
-    .slogan-blur span:nth-child(6) { animation-delay: 0.5s; }
-    .slogan-blur span:nth-child(7) { animation-delay: 0.6s; }
-    .slogan-blur span:nth-child(8) { animation-delay: 0.7s; }
-  </style>
 </head>
 <body>
 
-  <!-- Header mit Logo, Slogan & CTA -->
+  <!-- ===== Header mit Logo, Slogan & CTA ===== -->
   <header>
-    <img src="logo.png" alt="KASCHEX WERBUNG" class="logo">
+    <img src="logo.png" alt="KASCHEX WERBUNG Logo" class="logo">
 
-    <div class="slogan-blur">
-      <span>Wir</span> <span>rollen</span> <span>Ihre</span> <span>Marke</span> 
-      <span>aus</span> <span>–</span> <span>seit</span> <span>1995</span>
-    </div>
+    <h1 class="slogan-blur">
+      <span>Wir</span> <span>rollen</span> <span>Ihre</span> <span>Marke</span> <span>aus</span>
+      <span class="space"></span> <span>–</span> <span>seit</span> <span>1995</span>
+    </h1>
 
-    <a href="wahl.html" class="cta">Angebot berechnen</a>
+    <a href="wahl.html" class="cta">ANGEBOT BERECHNEN</a>
   </header>
 
-  <!-- Über uns -->
-  <section>
+  <!-- ===== Über uns ===== -->
+  <section class="card">
     <h2>Über uns</h2>
     <p>
-      <strong>KASCHEX WERBUNG</strong> ist Ihr Partner für hochwertige Beschriftungen, Folienlösungen und 
-      Werbetechnik. Mit jahrzehntelanger Erfahrung und Liebe zum Detail gestalten wir Fahrzeuge, Schaufenster, 
-      Schilder und vieles mehr.
+      <strong>KASCHEX WERBUNG</strong> ist Ihr Partner für hochwertige Beschriftungen, Folienlösungen und Werbetechnik. 
+      Mit jahrzehntelanger Erfahrung und Liebe zum Detail gestalten wir Fahrzeuge, Schaufenster, Schilder und vieles mehr.
     </p>
   </section>
 
-  <!-- Leistungen -->
+  <!-- ===== Leistungen ===== -->
   <section>
     <h2>Leistungen</h2>
-    <div class="leistungen">
-      <div class="card glass">
+    <div class="leistungs-grid">
+      <div class="card">
         <h3>Fahrzeugbeschriftung</h3>
         <p>Individuelle Fahrzeugbeklebungen – mobil werben und auffallen.</p>
       </div>
-
-      <div class="card glass">
+      <div class="card">
         <h3>Schilder & Banner</h3>
         <p>Vom Firmenschild bis zum Großformatbanner – robust und sichtbar.</p>
       </div>
-
-      <div class="card glass">
+      <div class="card">
         <h3>Schaufensterdesign</h3>
         <p>Wir gestalten Schaufenster, die ins Auge fallen und im Gedächtnis bleiben.</p>
       </div>
     </div>
   </section>
 
+  <!-- ===== Footer ===== -->
   <footer>
-    © KASCHEX WERBUNG · Qualität seit 1995
+    <p>© KASCHEX WERBUNG · Seit 1995 · Alle Rechte vorbehalten</p>
   </footer>
 
+  <!-- Animation für den Blur-Slogan -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const words = document.querySelectorAll(".slogan-blur span");
+      words.forEach((word, i) => {
+        word.style.animationDelay = `${i * 0.15}s`;
+      });
+    });
+  </script>
 </body>
 </html>
 
