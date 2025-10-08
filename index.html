@@ -16,29 +16,36 @@
       margin: 0 auto;      
     }
 
-    /* Neon-Line-Effekt */
+    /* Neon-Text mit animierter Linie */
     .neon-text {
       font-size: 1.6rem;
       color: var(--brand-light);
       position: relative;
       display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
       margin-top: 1rem;
+      z-index: 1;
+      text-shadow: 0 0 8px var(--brand-light), 0 0 16px var(--brand-dark);
     }
 
     .neon-text::after {
       content: '';
       position: absolute;
-      left: 0;
       top: 0;
+      left: -100%;
       height: 100%;
       width: 100%;
-      background: var(--bg);
-      animation: reveal 6s steps(40) forwards;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--brand-light) 50%,
+        transparent 100%
+      );
+      animation: neon-scan 3s linear infinite;
+      opacity: 0.7;
     }
 
-    @keyframes reveal {
+    @keyframes neon-scan {
+      0%   { left: -100%; }
       100% { left: 100%; }
     }
   </style>
