@@ -187,6 +187,18 @@
       closeBtn.addEventListener("click", () => {
         popup.classList.remove("active");
       });
+
+      // ===== Automatische Slideshows =====
+      const galleries = document.querySelectorAll(".gallery");
+      galleries.forEach(gallery => {
+        const imgs = gallery.querySelectorAll("img");
+        let index = 0;
+        setInterval(() => {
+          imgs[index].classList.remove("active");
+          index = (index + 1) % imgs.length;
+          imgs[index].classList.add("active");
+        }, 4000); // alle 4 Sekunden
+        
     });
   </script>
 </body>
