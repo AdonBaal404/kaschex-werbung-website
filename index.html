@@ -6,7 +6,7 @@
   <title>KASCHEX WERBUNG</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Logo-Größe direkt ins CSS */
+    /* Logo-Größe */
     .logo {
       width: 40%;          
       max-width: 480px;    
@@ -16,37 +16,30 @@
       margin: 0 auto;      
     }
 
-    /* Neon-Text mit animierter Linie */
-    .neon-text {
+    /* Schreibmaschinen-Slogan */
+    .slogan {
       font-size: 1.6rem;
       color: var(--brand-light);
-      position: relative;
-      display: inline-block;
-      margin-top: 1rem;
-      z-index: 1;
-      text-shadow: 0 0 8px var(--brand-light), 0 0 16px var(--brand-dark);
+      margin-top: 1.5rem;
+      text-align: center;
+      font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid var(--brand-light);
+      width: 0; /* startet unsichtbar */
+      margin-left: auto;
+      margin-right: auto;
+      animation: typing 4s steps(40, end) forwards,
+                 blink 0.8s step-end infinite;
     }
 
-    .neon-text::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        var(--brand-light) 50%,
-        transparent 100%
-      );
-      animation: neon-scan 3s linear infinite;
-      opacity: 0.7;
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
     }
 
-    @keyframes neon-scan {
-      0%   { left: -100%; }
-      100% { left: 100%; }
+    @keyframes blink {
+      50% { border-color: transparent; }
     }
   </style>
 </head>
@@ -56,8 +49,8 @@
     <!-- Logo -->
     <img src="logo.png" alt="KASCHEX WERBUNG Logo" class="logo">
 
-    <!-- Neon-animierter Slogan -->
-    <p class="neon-text">Wir rollen deine Marke aus – seit 1995</p>
+    <!-- Schreibmaschinen-Slogan -->
+    <p class="slogan">Wir rollen deine Marke aus – seit 1995</p>
 
     <p style="margin-top:1.5rem;">
       <a href="angebot-rechner.html" class="cta">
