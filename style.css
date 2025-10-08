@@ -84,30 +84,40 @@ header h1 { display: none; } /* Logo übernimmt H1-Rolle */
   .logo { width: 45%; max-width: 800px; }
 }
 
-/* ===== Neon-Slogan (Reveal Effekt) ===== */
+/* ===== Neon-Slogan mit Scan-Linie ===== */
 .neon-text {
   font-size: 1.6rem;
   color: var(--brand-light);
   position: relative;
   display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
   margin-top: 1rem;
   z-index: 1;
+  text-shadow: 0 0 8px var(--neon-1), 0 0 14px var(--neon-2);
+  overflow: hidden;
 }
 
 .neon-text::after {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
+  top: 0; left: -100%;
   height: 100%;
   width: 100%;
-  background: var(--bg);
-  animation: reveal 6s steps(40) forwards;
+
+  /* Neon-Laser Linie */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--brand-light) 50%,
+    transparent 100%
+  );
+
+  animation: neon-scan 3s linear infinite;
+  opacity: 0.8;
+  pointer-events: none;
 }
 
-@keyframes reveal {
+@keyframes neon-scan {
+  0%   { left: -100%; }
   100% { left: 100%; }
 }
 
