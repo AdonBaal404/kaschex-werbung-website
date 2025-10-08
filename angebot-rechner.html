@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KASCHEX – Angebotsrechner Auswahl</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    main {max-width:900px;margin:5rem auto;padding:0 1rem;text-align:center;}
+    .grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;}
+    .card {background:var(--panel);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);transition:transform .3s;}
+    .card:hover {transform:translateY(-5px);}
+    .card h2 {color:var(--brand);}
+    .card p {color:var(--muted);margin:1rem 0 2rem;}
+    .card a {display:inline-block;background:var(--brand);color:#00131f;padding:.8rem 1.2rem;border-radius:12px;font-weight:700;text-decoration:none;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>KASCHEX Angebotsrechner</h1>
+    <p>Bitte wählen Sie Ihren Modus:</p>
+  </header>
+
+  <main>
+    <div class="grid">
+      <div class="card">
+        <h2>Kunden-Modus</h2>
+        <p>Einfache Eingaben, klare Ergebnisse – ideal für eine schnelle Preisschätzung.</p>
+        <a href="angebot-rechner-kunde.html">Zum Kunden-Rechner</a>
+      </div>
+      <div class="card">
+        <h2>Profi-Modus</h2>
+        <p>Alle Parameter und Details sichtbar – für präzise Kalkulation und interne Planung.</p>
+        <a href="angebot-rechner-profi.html">Zum Profi-Rechner</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© KASCHEX WERBUNG</p>
+  </footer>
+</body>
+</html>
