@@ -8,24 +8,52 @@
   <style>
     /* Logo-Größe direkt ins CSS */
     .logo {
-      width: 40%;          /* Logo nimmt 40% der Bildschirmbreite */
-      max-width: 480px;    /* aber nicht größer als 480px */
-      min-width: 250px;    /* mindestens 250px, auch auf Handy */
-      height: auto;        /* Höhe passt sich an */
+      width: 40%;          
+      max-width: 480px;    
+      min-width: 250px;    
+      height: auto;        
       display: block;
-      margin: 0 auto;      /* zentrieren */
+      margin: 0 auto;      
+    }
+
+    /* Neon-Line-Effekt */
+    .neon-text {
+      font-size: 1.6rem;
+      color: var(--brand-light);
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      margin-top: 1rem;
+    }
+
+    .neon-text::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background: var(--bg);
+      animation: reveal 6s steps(40) forwards;
+    }
+
+    @keyframes reveal {
+      100% { left: 100%; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <!-- Logo ersetzt den H1-Text -->
+    <!-- Logo -->
     <img src="logo.png" alt="KASCHEX WERBUNG Logo" class="logo">
-    <p>Wir rollen deine Marke aus – seit 1995</p>
+
+    <!-- Neon-animierter Slogan -->
+    <p class="neon-text">Wir rollen deine Marke aus – seit 1995</p>
+
     <p style="margin-top:1.5rem;">
-      <!-- Button führt jetzt auf die Auswahlseite -->
-      <a href="angebot-rechner.html" style="background:#0ea5e9;color:#00131f;padding:1rem 2rem;border-radius:12px;font-weight:700;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.4);">
+      <a href="angebot-rechner.html" class="cta">
         ANGEBOT BERECHNEN
       </a>
     </p>
