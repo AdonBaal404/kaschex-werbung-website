@@ -5,12 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KASCHEX WERBUNG</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Logo-Größe direkt ins CSS */
+    .logo {
+      width: 40%;          /* Logo nimmt 40% der Bildschirmbreite */
+      max-width: 480px;    /* aber nicht größer als 480px */
+      min-width: 250px;    /* mindestens 250px, auch auf Handy */
+      height: auto;        /* Höhe passt sich an */
+      display: block;
+      margin: 0 auto;      /* zentrieren */
+    }
+  </style>
 </head>
 <body>
 
   <header>
     <!-- Logo ersetzt den H1-Text -->
-    <img src="logo.png" alt="KASCHEX WERBUNG Logo" style="max-height:140px; display:block; margin:0 auto;">
+    <img src="logo.png" alt="KASCHEX WERBUNG Logo" class="logo">
     <p>Wir rollen deine Marke aus – seit 1995</p>
     <p style="margin-top:1.5rem;">
       <!-- Button führt jetzt auf die Auswahlseite -->
