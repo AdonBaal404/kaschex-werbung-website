@@ -11,12 +11,12 @@
   --radius: 18px;
   --shadow: 0 10px 30px rgba(0,0,0,.45);
 
-  /* Neonlinien (für Kanten/Glows) */
-  --neon-1: rgba(14,165,233,.85);   /* Cyan */
-  --neon-2: rgba(0,139,209,.85);    /* Tiefblau */
+  /* Neonlinien */
+  --neon-1: rgba(14,165,233,.85);
+  --neon-2: rgba(0,139,209,.85);
   --neon-soft: rgba(14,165,233,.25);
 
-  /* Glaspanel-Transparenzen */
+  /* Glas-Transparenzen */
   --glass-bg: rgba(13, 21, 33, 0.45);
   --glass-border: rgba(255,255,255,.18);
 }
@@ -40,19 +40,15 @@ header {
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
   text-align: center;
-
-  /* animierter Gradient */
   background: linear-gradient(-45deg, var(--brand), var(--brand-dark), #0b2342, #002a44);
   background-size: 400% 400%;
   animation: gradientMove 20s ease infinite;
 }
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; } 
-  50% { background-position: 100% 50%; } 
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-/* optionales, sehr dezentes Textur-Overlay */
 header::after {
   content: '';
   position: absolute; inset: 0;
@@ -60,10 +56,9 @@ header::after {
               radial-gradient(1000px 500px at 80% 70%, rgba(255,255,255,.04), transparent 60%);
   pointer-events: none;
 }
+header h1 { display: none; }
 
-header h1 { display: none; } /* Logo übernimmt H1-Rolle */
-
-/* ===== Logo (Glas/Neon Bühne) ===== */
+/* ===== Logo ===== */
 .logo {
   width: 50%;
   max-width: 720px;
@@ -72,45 +67,47 @@ header h1 { display: none; } /* Logo übernimmt H1-Rolle */
   z-index: 1;
   margin: 0 auto;
   filter: drop-shadow(0 12px 28px rgba(0,0,0,.55))
-          drop-shadow(0 0 20px rgba(14,165,233,.25)); /* sanfter Neon-Glow */
+          drop-shadow(0 0 20px rgba(14,165,233,.25));
 }
-
-/* Handy & kleine Screens */
 @media (max-width: 768px) {
   .logo { width: 70%; max-width: 440px; min-width: 230px; }
 }
-/* Große Screens */
 @media (min-width: 1200px) {
   .logo { width: 45%; max-width: 800px; }
 }
 
-/* ===== Schreibmaschinen-Slogan ===== */
-.slogan {
+/* ===== Blur-Reveal-Slogan ===== */
+.slogan-blur {
   font-size: 1.6rem;
   color: var(--brand-light);
   margin-top: 1.5rem;
   text-align: center;
-  font-family: monospace;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid var(--brand-light);
-  width: 0; /* startet unsichtbar */
-  margin-left: auto;
-  margin-right: auto;
-  animation: typing 4s steps(40, end) forwards,
-             blink 0.8s step-end infinite;
+  font-weight: 500;
+  display: inline-block;
+}
+.slogan-blur span {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(20px);
+  animation: blurIn 0.6s forwards;
+}
+.slogan-blur .space {
+  width: 0.5em;
+  opacity: 1;
+  filter: none;
+  transform: none;
+  animation: none;
+}
+@keyframes blurIn {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink {
-  50% { border-color: transparent; }
-}
-
-/* ===== CTA Button (Neon) ===== */
+/* ===== CTA Button ===== */
 .cta {
   background: linear-gradient(135deg, var(--brand), var(--brand-dark));
   color: #00131f;
@@ -158,7 +155,7 @@ h2 {
   letter-spacing: 1px;
 }
 
-/* ===== Glassmorphism + Neon-Kanten für Karten ===== */
+/* ===== Glassmorphism Cards ===== */
 .glass {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -188,7 +185,6 @@ h2 {
   grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
   gap: 2rem;
 }
-
 .card {
   background: none;
   padding: 2rem;
@@ -221,9 +217,7 @@ h2 {
 @supports (backdrop-filter: blur(8px)) {
   .card { backdrop-filter: blur(10px) saturate(1.05); }
 }
-
 .card > * { position: relative; z-index: 1; }
-
 .card h3 {
   margin-bottom: .8rem;
   color: var(--brand-light);
@@ -231,7 +225,6 @@ h2 {
   text-shadow: 0 0 18px rgba(56,207,255,.18);
 }
 .card p { color: var(--muted); }
-
 .card:hover { transform: translateY(-6px); }
 .card:hover::after {
   box-shadow:
@@ -254,7 +247,7 @@ footer a {
   text-decoration: none;
 }
 
-/* ===== Accessibility & Motion ===== */
+/* ===== Accessibility ===== */
 :focus-visible { outline: 2px solid var(--brand-light); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
