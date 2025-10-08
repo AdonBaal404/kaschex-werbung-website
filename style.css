@@ -50,14 +50,31 @@ header h1 {
 }
 
 .logo {
-  width: 40%;         /* Logo nimmt 40% der Breite ein */
-  max-width: 480px;   /* maximal 480px breit */
-  min-width: 250px;   /* mindestens 250px breit */
+  width: 50%;         /* Basisbreite */
+  max-width: 720px;   /* Desktop Limit */
+  min-width: 280px;   /* Mindestgröße */
   height: auto;
   z-index: 1;
   display: block;
   margin: 0 auto;
-  filter: drop-shadow(0 8px 20px rgba(0,0,0,.5)); /* leichter Glow */
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,.5));
+}
+
+/* Handy & kleine Screens */
+@media (max-width: 768px) {
+  .logo {
+    width: 70%;       /* auf Handy breiter */
+    max-width: 420px;
+    min-width: 220px;
+  }
+}
+
+/* Große Bildschirme */
+@media (min-width: 1200px) {
+  .logo {
+    width: 45%;       /* 1,5× größer auf Desktop */
+    max-width: 800px;
+  }
 }
 
 header p {
@@ -71,9 +88,10 @@ header p {
 .cta {
   background: var(--brand);
   color: #00131f;
-  padding: 1rem 2rem;
+  padding: 1.1rem 2.4rem;
   border-radius: 12px;
   font-weight: 700;
+  font-size: 1.1rem;
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(0,0,0,.4);
   transition: all 0.3s ease;
@@ -147,4 +165,3 @@ footer a {
   color: var(--brand-light);
   text-decoration: none;
 }
-
