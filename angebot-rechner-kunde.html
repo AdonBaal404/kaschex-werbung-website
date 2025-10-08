@@ -6,92 +6,173 @@
   <title>KASCHEX – Kunden-Angebotsrechner</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    main {max-width:700px;margin:2rem auto;padding:0 1rem;}
-    .card {background:var(--panel);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);}
-    label {display:block;margin-top:1rem;color:var(--muted);font-size:.9rem;}
-    select,input {width:100%;padding:.7rem;border-radius:12px;border:1px solid #1f2a37;background:#0f172a;color:var(--ink);margin-top:.3rem;}
-    button {margin-top:1.5rem;width:100%;padding:1rem;font-size:1rem;font-weight:700;border:0;border-radius:14px;cursor:pointer;}
-    .primary {background:var(--brand);color:#00131f;}
-    .result {margin-top:2rem;background:#0f172a;padding:1.5rem;border-radius:14px;border:1px solid #1f2a37;}
-    .result h3 {color:var(--brand);margin-bottom:1rem;}
-    .result p {margin:.4rem 0;}
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(-45deg, var(--brand), var(--brand-dark), #0b2342, #002a44);
+      background-size: 400% 400%;
+      animation: gradientMove 20s ease infinite;
+      color: var(--text);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--brand-light);
+    }
+
+    header p {
+      margin-bottom: 2rem;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--glass-bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 420px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    select, input {
+      width: 100%;
+      padding: .7rem;
+      border-radius: 12px;
+      border: 1px solid #1f2a37;
+      background: #0f172a;
+      color: var(--text);
+      margin-top: .3rem;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border: 0;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .primary {
+      background: var(--brand);
+      color: #00131f;
+    }
+
+    .result {
+      margin-top: 2rem;
+      background: #0f172a;
+      padding: 1.5rem;
+      border-radius: 14px;
+      border: 1px solid #1f2a37;
+    }
+
+    .result h3 {
+      color: var(--brand);
+      margin-bottom: 1rem;
+    }
+
+    .result p {
+      margin: .4rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #020617;
+      color: #64748b;
+      font-size: .9rem;
+    }
   </style>
 </head>
 <body>
-<header>
-  <h1>Kunden-Angebotsrechner</h1>
-  <p>Einfache Eingaben, klare Ergebnisse – sofortige Kostenschätzung.</p>
-</header>
 
-<main>
-  <section class="card">
-    <label for="area">Fläche [m²]</label>
-    <input id="area" type="number" step="0.1" value="5">
+  <header>
+    <h1>Kunden-Angebotsrechner</h1>
+    <p>Einfache Eingaben, klare Ergebnisse – sofortige Kostenschätzung.</p>
 
-    <label for="material">Folienqualität</label>
-    <select id="material">
-      <option value="15">Basic (ab €15/m²)</option>
-      <option value="18" selected>Premium (ab €18/m²)</option>
-      <option value="25">High-End (ab €25/m²)</option>
-    </select>
+    <section class="card">
+      <label for="area">Fläche [m²]</label>
+      <input id="area" type="number" step="0.1" value="5">
 
-    <label for="express">Auftrag</label>
-    <select id="express">
-      <option value="0" selected>Standard</option>
-      <option value="20">Express (+20%)</option>
-    </select>
+      <label for="material">Folienqualität</label>
+      <select id="material">
+        <option value="15">Basic (ab €15/m²)</option>
+        <option value="18" selected>Premium (ab €18/m²)</option>
+        <option value="25">High-End (ab €25/m²)</option>
+      </select>
 
-    <label for="anfahrt">Anfahrt</label>
-    <select id="anfahrt">
-      <option value="0.5" selected>Stadtgebiet (ca. 0,5 h)</option>
-      <option value="1.0">Außerhalb (ca. 1 h)</option>
-    </select>
+      <label for="express">Auftrag</label>
+      <select id="express">
+        <option value="0" selected>Standard</option>
+        <option value="20">Express (+20%)</option>
+      </select>
 
-    <button class="primary" onclick="calc()">Preis berechnen</button>
+      <label for="anfahrt">Anfahrt</label>
+      <select id="anfahrt">
+        <option value="0.5" selected>Stadtgebiet (ca. 0,5 h)</option>
+        <option value="1.0">Außerhalb (ca. 1 h)</option>
+      </select>
 
-    <div class="result" id="output" style="display:none;">
-      <h3>Ergebnis</h3>
-      <p id="netto"></p>
-      <p id="brutto"></p>
-      <hr style="margin:1rem 0;border:0;border-top:1px solid #1f2a37;">
-      <p id="details"></p>
-    </div>
-  </section>
-</main>
+      <button class="primary" onclick="calc()">Preis berechnen</button>
 
-<footer>
-  <p>© KASCHEX WERBUNG · Diese Kalkulation ist unverbindlich.</p>
-</footer>
+      <div class="result" id="output" style="display:none;">
+        <h3>Ergebnis</h3>
+        <p id="netto"></p>
+        <p id="brutto"></p>
+        <hr style="margin:1rem 0;border:0;border-top:1px solid #1f2a37;">
+        <p id="details"></p>
+      </div>
+    </section>
+  </header>
 
-<script>
-function calc(){
-  const A = parseFloat(document.getElementById("area").value)||0;
-  const c_folie = parseFloat(document.getElementById("material").value);
-  const express = parseFloat(document.getElementById("express").value)/100;
-  const t_anfahrt = parseFloat(document.getElementById("anfahrt").value);
+  <footer>
+    <p>© KASCHEX WERBUNG · Diese Kalkulation ist unverbindlich.</p>
+  </footer>
 
-  // Fixe Werte für Kundenmodus
-  const c_lam = 6, waste=0.1;
-  const c_h=65, v=3, t_r=0.5;
-  const c_fix=25, alpha=0.1, beta=0.35, mwst=0.19;
+  <script>
+    function calc(){
+      const A = parseFloat(document.getElementById("area").value)||0;
+      const c_folie = parseFloat(document.getElementById("material").value);
+      const express = parseFloat(document.getElementById("express").value)/100;
+      const t_anfahrt = parseFloat(document.getElementById("anfahrt").value);
 
-  const t_mont = A/v + t_r + t_anfahrt;
-  const c_mat = A*(c_folie+c_lam)*(1+waste);
-  const c_arb = t_mont*c_h;
+      // Fixe Werte für Kundenmodus
+      const c_lam = 6, waste=0.1;
+      const c_h=65, v=3, t_r=0.5;
+      const c_fix=25, alpha=0.1, beta=0.35, mwst=0.19;
 
-  let netto = (c_mat+c_arb+c_fix)*(1+alpha);
-  netto *= (1+beta);
-  netto *= (1+express);
+      const t_mont = A/v + t_r + t_anfahrt;
+      const c_mat = A*(c_folie+c_lam)*(1+waste);
+      const c_arb = t_mont*c_h;
 
-  const brutto = netto*(1+mwst);
+      let netto = (c_mat+c_arb+c_fix)*(1+alpha);
+      netto *= (1+beta);
+      netto *= (1+express);
 
-  document.getElementById("output").style.display="block";
-  document.getElementById("netto").textContent = `Netto: ${netto.toFixed(2)} €`;
-  document.getElementById("brutto").textContent = `Brutto (inkl. MwSt): ${brutto.toFixed(2)} €`;
+      const brutto = netto*(1+mwst);
 
-  document.getElementById("details").textContent = 
-    `Material: ${c_mat.toFixed(2)} €, Arbeit: ${c_arb.toFixed(2)} €, Fix: ${c_fix} €`;
-}
-</script>
+      document.getElementById("output").style.display="block";
+      document.getElementById("netto").textContent = `Netto: ${netto.toFixed(2)} €`;
+      document.getElementById("brutto").textContent = `Brutto (inkl. MwSt): ${brutto.toFixed(2)} €`;
+
+      document.getElementById("details").textContent = 
+        `Material: ${c_mat.toFixed(2)} €, Arbeit: ${c_arb.toFixed(2)} €, Fix: ${c_fix} €`;
+    }
+  </script>
 </body>
 </html>
