@@ -11,6 +11,29 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== Galerie-Slideshow ===== */
+    .gallery {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+    }
+    .gallery img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .gallery img.active {
+      opacity: 1;
+    }
+  </style>
 </head>
 <body>
 
@@ -20,10 +43,9 @@
 
     <h1 class="slogan-blur">
       <span>Wir</span> <span>rollen</span> <span>Ihre</span> <span>Marke</span> <span>aus</span>
-      </span> <span>–</span> <span>seit</span> <span>1995</span>
+      <span>–</span> <span>seit</span> <span>1995</span>
     </h1>
 
-    
     <a href="wahl.html" class="cta">ANGEBOT BERECHNEN</a>
   </header>
 
@@ -40,22 +62,44 @@
   <section>
     <h2>Leistungen</h2>
     <div class="leistungs-grid">
+      
+      <!-- Fahrzeugbeschriftung -->
       <div class="card">
+        <div class="gallery">
+          <img src="bilder/fahrzeug1.jpg" class="active" alt="Fahrzeugbeschriftung Beispiel 1">
+          <img src="bilder/fahrzeug2.jpg" alt="Fahrzeugbeschriftung Beispiel 2">
+          <img src="bilder/fahrzeug3.jpg" alt="Fahrzeugbeschriftung Beispiel 3">
+        </div>
         <h3>Fahrzeugbeschriftung</h3>
         <p>Individuelle Fahrzeugbeklebungen – mobil werben und auffallen.</p>
       </div>
+
+      <!-- Schilder & Banner -->
       <div class="card">
+        <div class="gallery">
+          <img src="bilder/schilder1.jpg" class="active" alt="Schilder Beispiel 1">
+          <img src="bilder/schilder2.jpg" alt="Schilder Beispiel 2">
+          <img src="bilder/schilder3.jpg" alt="Schilder Beispiel 3">
+        </div>
         <h3>Schilder & Banner</h3>
         <p>Vom Firmenschild bis zum Großformatbanner – robust und sichtbar.</p>
       </div>
+
+      <!-- Schaufensterdesign -->
       <div class="card">
+        <div class="gallery">
+          <img src="bilder/schaufenster1.jpg" class="active" alt="Schaufensterdesign Beispiel 1">
+          <img src="bilder/schaufenster2.jpg" alt="Schaufensterdesign Beispiel 2">
+          <img src="bilder/schaufenster3.jpg" alt="Schaufensterdesign Beispiel 3">
+        </div>
         <h3>Schaufensterdesign</h3>
         <p>Wir gestalten Schaufenster, die ins Auge fallen und im Gedächtnis bleiben.</p>
       </div>
+
     </div>
   </section>
 
-    <!-- ===== Footer ===== -->
+  <!-- ===== Footer ===== -->
   <footer>
     <p>
       © 2025 KASCHEX WERBUNG · 
@@ -70,6 +114,18 @@
       const words = document.querySelectorAll(".slogan-blur span");
       words.forEach((word, i) => {
         word.style.animationDelay = `${i * 0.15}s`;
+      });
+
+      // ===== Automatische Slideshows =====
+      const galleries = document.querySelectorAll(".gallery");
+      galleries.forEach(gallery => {
+        const imgs = gallery.querySelectorAll("img");
+        let index = 0;
+        setInterval(() => {
+          imgs[index].classList.remove("active");
+          index = (index + 1) % imgs.length;
+          imgs[index].classList.add("active");
+        }, 4000); // alle 4 Sekunden
       });
     });
   </script>
