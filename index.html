@@ -6,140 +6,66 @@
   <title>KASCHEX WERBUNG</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Logo-Größe */
-    .logo {
-      width: 40%;          
-      max-width: 480px;    
-      min-width: 250px;    
-      height: auto;        
-      display: block;
-      margin: 0 auto;      
-    }
-
-    /* Blur-Reveal-Slogan */
-    .slogan-blur {
-      font-size: 1.6rem;
-      color: var(--brand-light);
-      margin-top: 1.5rem;
-      text-align: center;
-      font-weight: 500;
-      display: inline-block;
-    }
-
-    .slogan-blur span {
-      display: inline-block;
-      opacity: 0;
-      filter: blur(8px);
-      transform: translateY(20px);
-      animation: blurIn 0.6s forwards;
-    }
-
-    /* Leerzeichen */
-    .slogan-blur .space {
-      width: 0.5em;
-      opacity: 1;
-      filter: none;
-      transform: none;
-      animation: none;
-    }
-
-    @keyframes blurIn {
-      to {
-        opacity: 1;
-        filter: blur(0);
-        transform: translateY(0);
-      }
-    }
+    /* --- Animation Verzögerungen für Blur-Slogan --- */
+    .slogan-blur span:nth-child(1) { animation-delay: 0s; }
+    .slogan-blur span:nth-child(2) { animation-delay: 0.1s; }
+    .slogan-blur span:nth-child(3) { animation-delay: 0.2s; }
+    .slogan-blur span:nth-child(4) { animation-delay: 0.3s; }
+    .slogan-blur span:nth-child(5) { animation-delay: 0.4s; }
+    .slogan-blur span:nth-child(6) { animation-delay: 0.5s; }
+    .slogan-blur span:nth-child(7) { animation-delay: 0.6s; }
+    .slogan-blur span:nth-child(8) { animation-delay: 0.7s; }
   </style>
 </head>
 <body>
 
+  <!-- Header mit Logo, Slogan & CTA -->
   <header>
-    <!-- Logo -->
-    <img src="logo.png" alt="KASCHEX WERBUNG Logo" class="logo">
+    <img src="logo.png" alt="KASCHEX WERBUNG" class="logo">
 
-    <!-- Blur-Reveal-Slogan -->
-    <p class="slogan-blur" id="slogan">Wir rollen Ihre Marke aus – seit 1995</p>
+    <div class="slogan-blur">
+      <span>Wir</span> <span>rollen</span> <span>Ihre</span> <span>Marke</span> 
+      <span>aus</span> <span>–</span> <span>seit</span> <span>1995</span>
+    </div>
 
-    <p style="margin-top:1.5rem;">
-      <a href="angebot-rechner.html" class="cta">
-        ANGEBOT BERECHNEN
-      </a>
-    </p>
+    <a href="wahl.html" class="cta">Angebot berechnen</a>
   </header>
 
+  <!-- Über uns -->
   <section>
     <h2>Über uns</h2>
-    <p>KASCHEX WERBUNG ist Ihr Partner für hochwertige Beschriftungen, Folienlösungen und Werbetechnik. Mit jahrzehntelanger Erfahrung und Liebe zum Detail gestalten wir Fahrzeuge, Schaufenster, Schilder und vieles mehr.</p>
+    <p>
+      <strong>KASCHEX WERBUNG</strong> ist Ihr Partner für hochwertige Beschriftungen, Folienlösungen und 
+      Werbetechnik. Mit jahrzehntelanger Erfahrung und Liebe zum Detail gestalten wir Fahrzeuge, Schaufenster, 
+      Schilder und vieles mehr.
+    </p>
   </section>
 
+  <!-- Leistungen -->
   <section>
     <h2>Leistungen</h2>
     <div class="leistungen">
-      <div class="card">
+      <div class="card glass">
         <h3>Fahrzeugbeschriftung</h3>
         <p>Individuelle Fahrzeugbeklebungen – mobil werben und auffallen.</p>
       </div>
-      <div class="card">
+
+      <div class="card glass">
         <h3>Schilder & Banner</h3>
         <p>Vom Firmenschild bis zum Großformatbanner – robust und sichtbar.</p>
       </div>
-      <div class="card">
-        <h3>Schaufensterfolien</h3>
-        <p>Gestaltung und Sichtschutz für Ihre Ladenfront – kreativ & praktisch.</p>
-      </div>
-      <div class="card">
-        <h3>Sonnenschutz & Effektfolien</h3>
-        <p>Komfort und Design durch funktionale Hochleistungsfolien.</p>
+
+      <div class="card glass">
+        <h3>Schaufensterdesign</h3>
+        <p>Wir gestalten Schaufenster, die ins Auge fallen und im Gedächtnis bleiben.</p>
       </div>
     </div>
-  </section>
-
-  <section>
-    <h2>Warum KASCHEX?</h2>
-    <div class="leistungen">
-      <div class="card">
-        <h3>Reproduzierbare Preise</h3>
-        <p>Kalkulation nach klarer Formel: Material ⨉ Fläche + Zeit ⨉ Satz + Fix + Risiko + Marge.</p>
-      </div>
-      <div class="card">
-        <h3>Termintreue</h3>
-        <p>Planung mit Puffer, verbindliche Termine, zuverlässige Ausführung.</p>
-      </div>
-      <div class="card">
-        <h3>Haltbarkeit</h3>
-        <p>Nur geprüfte Hochleistungsfolien, fachgerechte Montage, Garantie 12 Monate.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Kontakt</h2>
-    <p>Adresse: Kassel und Umgebung<br>
-    Telefon: 0561 / 123456<br>
-    E-Mail: info@kaschex-werbung.de</p>
   </section>
 
   <footer>
-    <p>© KASCHEX WERBUNG · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></p>
+    © KASCHEX WERBUNG · Qualität seit 1995
   </footer>
 
-  <script>
-    // Text in einzelne Buchstaben aufsplitten
-    const slogan = document.getElementById("slogan");
-    const text = slogan.innerText;
-    slogan.innerText = "";
-
-    text.split("").forEach((char, i) => {
-      const span = document.createElement("span");
-      span.innerText = char;
-      if (char === " ") {
-        span.classList.add("space"); // Leerzeichen ohne Animation
-      } else {
-        span.style.animationDelay = `${i * 0.07}s`; // Verzögerung
-      }
-      slogan.appendChild(span);
-    });
-  </script>
 </body>
 </html>
+
