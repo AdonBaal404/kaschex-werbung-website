@@ -3,197 +3,326 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>KASCHEX – Angebots- & Preisrechner</title>
-  <meta name="description" content="KASCHEX Angebotsrechner: Reproduzierbare Kalkulation für Folien, Beschriftung, Montage – Material, Zeit, Fix, Risiko, Marge, MwSt.">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+  <title>KASCHEX – Profi-Angebotsrechner</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    :root{
-      --bg:#0b1520;--panel:#111827;--ink:#e6eef7;--muted:#94a3b8;
-      --brand:#0ea5e9;--brand2:#007bbf;--ok:#10b981;--warn:#f59e0b;--err:#ef4444;
-      --r:16px;--shadow:0 10px 30px rgba(0,0,0,.45);--w:980px
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(-45deg, var(--brand), var(--brand-dark), #0b2342, #002a44);
+      background-size: 400% 400%;
+      animation: gradientMove 20s ease infinite;
+      color: var(--text);
+      padding: 2rem 1rem;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
-    header{padding:2.2rem 1rem;text-align:center;background:linear-gradient(135deg,var(--brand),var(--brand2))}
-    header h1{font-size:clamp(1.8rem,3.2vw,2.4rem);letter-spacing:.06em}
-    header p{opacity:.9;margin-top:.4rem}
-    main{max-width:var(--w);margin:2rem auto;padding:0 1rem 2rem 1rem}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-    .card{background:var(--panel);border-radius:var(--r);padding:1rem 1rem;box-shadow:var(--shadow)}
-    .card h2{font-size:1.05rem;margin-bottom:.6rem;color:var(--brand)}
-    label{display:block;font-size:.9rem;margin:.5rem 0 .25rem 0;color:var(--muted)}
-    input,select{width:100%;padding:.6rem .7rem;border-radius:10px;border:1px solid #1f2a37;background:#0f172a;color:var(--ink)}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-    .btns{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
-    button{appearance:none;border:0;border-radius:12px;padding:.7rem 1rem;font-weight:600;cursor:pointer}
-    .primary{background:var(--brand);color:#00131f}
-    .ghost{background:#0f172a;color:var(--ink);border:1px solid #1f2a37}
-    .danger{background:var(--err);color:#fff}
-    .totals{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    .kpi{background:#0f172a;border:1px solid #1f2a37;border-radius:12px;padding:1rem}
-    .kpi h3{font-size:.95rem;color:var(--muted)}
-    .kpi b{display:block;font-size:1.4rem;margin-top:.2rem}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
-    footer{max-width:var(--w);margin:1rem auto;color:var(--muted);font-size:.85rem;padding:0 1rem 2rem 1rem}
-    @media (prefers-reduced-motion:no-preference){.card{transition:transform .25s ease, box-shadow .25s ease}.card:focus-within{transform:translateY(-3px);box-shadow:0 16px 32px rgba(0,0,0,.55)}}
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--brand-light);
+    }
+
+    header p {
+      margin-bottom: 2rem;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 980px;
+    }
+
+    .card {
+      background: var(--glass-bg);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      text-align: left;
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      margin-bottom: .6rem;
+      color: var(--brand);
+    }
+
+    label {
+      display: block;
+      font-size: .9rem;
+      margin: .5rem 0 .25rem 0;
+      color: var(--muted);
+    }
+
+    input, select {
+      width: 100%;
+      padding: .6rem .7rem;
+      border-radius: 10px;
+      border: 1px solid #1f2a37;
+      background: #0f172a;
+      color: var(--text);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem;
+    }
+
+    .btns {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      margin-top: .8rem;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 12px;
+      padding: .7rem 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .primary { background: var(--brand); color: #00131f; }
+    .ghost   { background: #0f172a; color: var(--text); border: 1px solid #1f2a37; }
+    .danger  { background: var(--err); color: #fff; }
+
+    .totals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .kpi {
+      background: #0f172a;
+      border: 1px solid #1f2a37;
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    .kpi h3 {
+      font-size: .95rem;
+      color: var(--muted);
+    }
+
+    .kpi b {
+      display: block;
+      font-size: 1.4rem;
+      margin-top: .2rem;
+    }
+
+    .mono { font-family: monospace; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #020617;
+      color: #64748b;
+      font-size: .9rem;
+    }
   </style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"KASCHEX Angebotsrechner","applicationCategory":"BusinessApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
 </head>
 <body>
-<header>
-  <h1>KASCHEX – Angebots- & Preisrechner</h1>
-  <p>Reproduzierbare Kalkulation: Material ⨉ Fläche + Zeit ⨉ Satz + Fix + Risiko + Marge</p>
-</header>
-<main>
-  <div class="grid" role="region" aria-label="Kalkulation">
-    <section class="card" aria-labelledby="h-geo">
-      <h2 id="h-geo">1) Geometrie & Zeit</h2>
-      <label for="area">Fläche A [m²]</label>
-      <input id="area" type="number" min="0" step="0.01" value="5.0" inputmode="decimal">
-      <div class="row">
-        <div>
-          <label for="rate">Stundensatz c_h [€/h]</label>
-          <input id="rate" type="number" min="0" step="1" value="65" inputmode="numeric">
-        </div>
-        <div>
-          <label for="speed">Flächenleistung v_mont [m²/h]</label>
-          <input id="speed" type="number" min="0.01" step="0.1" value="3.0" inputmode="decimal">
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <label for="tprep">Rüstzeit t_Rüst [h]</label>
-          <input id="tprep" type="number" min="0" step="0.1" value="0.5" inputmode="decimal">
-        </div>
-        <div>
-          <label for="ttravel">Anfahrt t_Anfahrt [h]</label>
-          <input id="ttravel" type="number" min="0" step="0.1" value="0.5" inputmode="decimal">
-        </div>
-      </div>
-      <div class="btns">
-        <button class="ghost" id="btnTime" type="button">Montagezeit schätzen</button>
-        <button class="ghost" id="btnResetTime" type="button">Zeit-Felder zurücksetzen</button>
-      </div>
-      <label for="tmanual">Montagezeit t_mont [h] (optional manuell)</label>
-      <input id="tmanual" type="number" min="0" step="0.1" placeholder="leer lassen für Auto" inputmode="decimal">
-    </section>
 
-    <section class="card" aria-labelledby="h-mat">
-      <h2 id="h-mat">2) Material & Fixkosten</h2>
-      <div class="row">
-        <div>
-          <label for="cfolie">Folienkosten c_folie [€/m²]</label>
-          <input id="cfolie" type="number" min="0" step="0.1" value="18" inputmode="decimal">
-        </div>
-        <div>
-          <label for="clam">Laminat c_lam [€/m²]</label>
-          <input id="clam" type="number" min="0" step="0.1" value="6" inputmode="decimal">
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <label for="waste">Verschnitt [%]</label>
-          <input id="waste" type="number" min="0" max="50" step="1" value="10" inputmode="numeric">
-        </div>
-        <div>
-          <label for="cfix">Fixkosten (Fahrt/Werkzeug) [€]</label>
-          <input id="cfix" type="number" min="0" step="1" value="25" inputmode="numeric">
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <label for="alpha">Risiko α [%]</label>
-          <input id="alpha" type="number" min="0" max="50" step="1" value="10" inputmode="numeric">
-        </div>
-        <div>
-          <label for="beta">Marge β [%]</label>
-          <input id="beta" type="number" min="0" max="90" step="1" value="35" inputmode="numeric">
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <label for="gamma">Express γ [%] (optional)</label>
-          <input id="gamma" type="number" min="0" max="100" step="1" value="0" inputmode="numeric">
-        </div>
-        <div>
-          <label for="mwst">MwSt [%]</label>
-          <input id="mwst" type="number" min="0" max="50" step="1" value="19" inputmode="numeric">
-        </div>
-      </div>
-    </section>
+  <header>
+    <h1>Profi-Angebotsrechner</h1>
+    <p>Alle Parameter & Details sichtbar – präzise Kalkulation für Profis.</p>
 
-    <section class="card" aria-labelledby="h-res">
-      <h2 id="h-res">3) Ergebnis</h2>
-      <div class="totals">
-        <div class="kpi" aria-live="polite">
-          <h3>Netto-Preis</h3>
-          <b id="kNetto" class="mono">– €</b>
-        </div>
-        <div class="kpi" aria-live="polite">
-          <h3>Brutto-Preis</h3>
-          <b id="kBrutto" class="mono">– €</b>
-        </div>
-      </div>
-      <div style="margin-top:1rem" class="kpi">
-        <h3>Aufschlüsselung</h3>
-        <pre id="breakdown" class="mono" style="white-space:pre-wrap;margin-top:.5rem"></pre>
-      </div>
-      <div class="btns">
-        <button class="primary" id="btnCalc" type="button">Kalkulieren</button>
-        <button class="ghost" id="btnQuote" type="button">Kurz-Angebot kopieren</button>
-        <button class="danger" id="btnClear" type="button">Alles leeren</button>
-      </div>
-    </section>
-  </div>
-</main>
-<footer>
-  © KASCHEX WERBUNG · Diese Kalkulation ist unverbindlich; es gilt das schriftliche Angebot.
-</footer>
+    <div class="grid" role="region" aria-label="Kalkulation">
+      <!-- Geometrie & Zeit -->
+      <section class="card">
+        <h2>1) Geometrie & Zeit</h2>
+        <label for="area">Fläche A [m²]</label>
+        <input id="area" type="number" step="0.1" value="5">
 
-<script>
-(function(){
-  "use strict";
-  function g(id){return document.getElementById(id)}
-  function readNum(id, min, max){const el=g(id);if(!el)return{ok:false,val:0};const v=Number(el.value);if(Number.isNaN(v))return{ok:false,val:0};if(min!==undefined&&v<min)return{ok:false,val:min};if(max!==undefined&&v>max)return{ok:false,val:max};return{ok:true,val:v}}
-  function clamp(x,l,h){return x<l?l:(x>h?h:x)}
-  function round2(x){return Math.round((x+Number.EPSILON)*100)/100}
-  function estTime(a,v,tr,ta){return v<=0?0:(a/v+tr+ta)}
-  function compute(){
-    const a=readNum("area",0,1e6).val;const ch=readNum("rate",0,1e4).val;const v=readNum("speed",0.01,1e3).val;const tr=readNum("tprep",0,1e3).val;const ta=readNum("ttravel",0,1e3).val;
-    const tMan=g("tmanual").value.trim();const tmont=tMan?clamp(Number(tMan),0,1e3):estTime(a,v,tr,ta);
-    const cFol=readNum("cfolie",0,1e4).val;const cLam=readNum("clam",0,1e4).val;const waste=clamp(readNum("waste",0,50).val,0,50)/100;const cFix=readNum("cfix",0,1e5).val;
-    const alpha=clamp(readNum("alpha",0,50).val,0,50)/100;const beta=clamp(readNum("beta",0,90).val,0,90)/100;const gamma=clamp(readNum("gamma",0,100).val,0,100)/100;const mwst=clamp(readNum("mwst",0,50).val,0,50)/100;
-    const cMatBase=a*(cFol+cLam);const cWaste=cMatBase*waste;const Cmat=cMatBase+cWaste;const Carb=tmont*ch;const Cfix=cFix;const Crisk=(Cmat+Carb+Cfix)*alpha;const Pnet=(Cmat+Carb+Cfix+Crisk)*(1+beta)*(1+gamma);const Pbrut=Pnet*(1+mwst);
-    return{tmont:round2(tmont),Cmat:round2(Cmat),Carb:round2(Carb),Cfix:round2(Cfix),Crisk:round2(Crisk),Pnet:round2(Pnet),Pbrut:round2(Pbrut),params:{a,ch,v,tr,ta,cFol,cLam,waste,alpha,beta,gamma,mwst}}}
-  function show(r){g("kNetto").textContent=r.Pnet.toFixed(2)+" €";g("kBrutto").textContent=r.Pbrut.toFixed(2)+" €";const p=r.params;g("breakdown").textContent=`Zeit: t_mont = ${r.tmont} h
-Material: C_mat = ${r.Cmat} €
-Arbeit:   C_arb = ${r.Carb} €
-Fix:      C_fix = ${r.Cfix} €
-Risiko:   C_risk = ${r.Crisk} €
-------------------------------
+        <div class="row">
+          <div>
+            <label for="rate">Stundensatz c_h [€/h]</label>
+            <input id="rate" type="number" value="65">
+          </div>
+          <div>
+            <label for="speed">Leistung v [m²/h]</label>
+            <input id="speed" type="number" value="3">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="tprep">Rüstzeit [h]</label>
+            <input id="tprep" type="number" value="0.5">
+          </div>
+          <div>
+            <label for="ttravel">Anfahrt [h]</label>
+            <input id="ttravel" type="number" value="0.5">
+          </div>
+        </div>
+
+        <div class="btns">
+          <button class="ghost" id="btnTime" type="button">Montagezeit schätzen</button>
+          <button class="ghost" id="btnResetTime" type="button">Zeit zurücksetzen</button>
+        </div>
+
+        <label for="tmanual">Montagezeit manuell [h]</label>
+        <input id="tmanual" type="number" placeholder="optional">
+      </section>
+
+      <!-- Material & Kosten -->
+      <section class="card">
+        <h2>2) Material & Fixkosten</h2>
+        <div class="row">
+          <div>
+            <label for="cfolie">Folienkosten [€/m²]</label>
+            <input id="cfolie" type="number" value="18">
+          </div>
+          <div>
+            <label for="clam">Laminat [€/m²]</label>
+            <input id="clam" type="number" value="6">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="waste">Verschnitt [%]</label>
+            <input id="waste" type="number" value="10">
+          </div>
+          <div>
+            <label for="cfix">Fixkosten [€]</label>
+            <input id="cfix" type="number" value="25">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="alpha">Risiko α [%]</label>
+            <input id="alpha" type="number" value="10">
+          </div>
+          <div>
+            <label for="beta">Marge β [%]</label>
+            <input id="beta" type="number" value="35">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="gamma">Express γ [%]</label>
+            <input id="gamma" type="number" value="0">
+          </div>
+          <div>
+            <label for="mwst">MwSt [%]</label>
+            <input id="mwst" type="number" value="19">
+          </div>
+        </div>
+      </section>
+
+      <!-- Ergebnis -->
+      <section class="card">
+        <h2>3) Ergebnis</h2>
+        <div class="totals">
+          <div class="kpi">
+            <h3>Netto</h3>
+            <b id="kNetto" class="mono">– €</b>
+          </div>
+          <div class="kpi">
+            <h3>Brutto</h3>
+            <b id="kBrutto" class="mono">– €</b>
+          </div>
+        </div>
+
+        <div class="kpi" style="margin-top:1rem;">
+          <h3>Details</h3>
+          <pre id="breakdown" class="mono" style="white-space:pre-wrap;margin-top:.5rem"></pre>
+        </div>
+
+        <div class="btns">
+          <button class="primary" id="btnCalc" type="button">Kalkulieren</button>
+          <button class="ghost" id="btnQuote" type="button">Kurz-Angebot kopieren</button>
+          <button class="danger" id="btnClear" type="button">Alles leeren</button>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <footer>
+    © KASCHEX WERBUNG · Diese Kalkulation ist unverbindlich.
+  </footer>
+
+  <script>
+    (function(){
+      "use strict";
+      function g(id){return document.getElementById(id)}
+      function round2(x){return Math.round((x+Number.EPSILON)*100)/100}
+      function estTime(a,v,tr,ta){return v<=0?0:(a/v+tr+ta)}
+
+      function compute(){
+        const A = parseFloat(g("area").value)||0;
+        const ch= parseFloat(g("rate").value)||0;
+        const v = parseFloat(g("speed").value)||1;
+        const tr= parseFloat(g("tprep").value)||0;
+        const ta= parseFloat(g("ttravel").value)||0;
+        const tMan=g("tmanual").value.trim();
+        const tmont=tMan?parseFloat(tMan):estTime(A,v,tr,ta);
+
+        const cFol=parseFloat(g("cfolie").value)||0;
+        const cLam=parseFloat(g("clam").value)||0;
+        const waste=(parseFloat(g("waste").value)||0)/100;
+        const cFix=parseFloat(g("cfix").value)||0;
+        const alpha=(parseFloat(g("alpha").value)||0)/100;
+        const beta=(parseFloat(g("beta").value)||0)/100;
+        const gamma=(parseFloat(g("gamma").value)||0)/100;
+        const mwst=(parseFloat(g("mwst").value)||0)/100;
+
+        const cMat=(A*(cFol+cLam))*(1+waste);
+        const cArb=tmont*ch;
+        const cRisk=(cMat+cArb+cFix)*alpha;
+        const Pnet=(cMat+cArb+cFix+cRisk)*(1+beta)*(1+gamma);
+        const Pbrut=Pnet*(1+mwst);
+
+        return {tmont:round2(tmont),Cmat:round2(cMat),Carb:round2(cArb),Cfix:cFix,Crisk:round2(cRisk),Pnet:round2(Pnet),Pbrut:round2(Pbrut)};
+      }
+
+      function show(r){
+        g("kNetto").textContent=r.Pnet.toFixed(2)+" €";
+        g("kBrutto").textContent=r.Pbrut.toFixed(2)+" €";
+        g("breakdown").textContent=`Zeit: ${r.tmont} h
+Material: ${r.Cmat} €
+Arbeit:   ${r.Carb} €
+Fix:      ${r.Cfix} €
+Risiko:   ${r.Crisk} €
+-----------------
 Netto:    ${r.Pnet} €
-Brutto:   ${r.Pbrut} €
+Brutto:   ${r.Pbrut} €`;
+      }
 
-Parameter:
-A=${p.a} m², c_h=${p.ch} €/h, v=${p.v} m²/h, t_Rüst=${p.tr} h, t_Anfahrt=${p.ta} h
-c_folie=${p.cFol} €/m², c_lam=${p.cLam} €/m², Verschnitt=${(p.waste*100).toFixed(0)}%
-α=${(p.alpha*100).toFixed(0)}%, β=${(p.beta*100).toFixed(0)}%, γ=${(p.gamma*100).toFixed(0)}%, MwSt=${(p.mwst*100).toFixed(0)}%`}
-  function copyQuote(r){const s=`KASCHEX – Kurzangebot
+      function copyQuote(r){
+        const s=`KASCHEX – Kurzangebot
 Netto:  ${r.Pnet} €
 Brutto: ${r.Pbrut} €
-Montagezeit (geschätzt): ${r.tmont} h
-Hinweis: Endgültig gültig erst mit schriftlichem Angebot.`;navigator.clipboard.writeText(s).catch(function(){})}
-  function clearAll(){["area","rate","speed","tprep","ttravel","tmanual","cfolie","clam","waste","cfix","alpha","beta","gamma","mwst"].forEach(function(id){const el=g(id);if(el)el.value=""});g("kNetto").textContent="– €";g("kBrutto").textContent="– €";g("breakdown").textContent=""}
-  function setTime(){const a=readNum("area",0,1e6).val;const v=readNum("speed",0.01,1e3).val;const tr=readNum("tprep",0,1e3).val;const ta=readNum("ttravel",0,1e3).val;g("tmanual").value=round2(estTime(a,v,tr,ta))}
-  function resetTimeFields(){g("tmanual").value=""}
-  g("btnCalc").addEventListener("click",function(){show(compute())});
-  g("btnQuote").addEventListener("click",function(){copyQuote(compute())});
-  g("btnClear").addEventListener("click",clearAll);
-  g("btnTime").addEventListener("click",setTime);
-  g("btnResetTime").addEventListener("click",resetTimeFields);
-})();
-</script>
+Montagezeit: ${r.tmont} h
+(Gültig nur mit schriftlichem Angebot)`;
+        navigator.clipboard.writeText(s).catch(()=>{});
+      }
+
+      g("btnCalc").addEventListener("click",()=>show(compute()));
+      g("btnQuote").addEventListener("click",()=>copyQuote(compute()));
+      g("btnClear").addEventListener("click",()=>{
+        ["area","rate","speed","tprep","ttravel","tmanual","cfolie","clam","waste","cfix","alpha","beta","gamma","mwst"].forEach(id=>g(id).value="");
+        g("kNetto").textContent="– €";
+        g("kBrutto").textContent="– €";
+        g("breakdown").textContent="";
+      });
+      g("btnTime").addEventListener("click",()=>{
+        g("tmanual").value=round2(estTime(parseFloat(g("area").value)||0,parseFloat(g("speed").value)||1,parseFloat(g("tprep").value)||0,parseFloat(g("ttravel").value)||0));
+      });
+      g("btnResetTime").addEventListener("click",()=>{g("tmanual").value="";});
+    })();
+  </script>
 </body>
 </html>
