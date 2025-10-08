@@ -58,50 +58,51 @@
     </p>
   </section>
 
-<!-- ===== Leistungen ===== -->
-<section>
-  <h2>Leistungen</h2>
-  <div class="leistungs-grid">
-    
-    <!-- Fahrzeugbeschriftung -->
-    <div class="card">
-      <div class="gallery">
-        <img src="bilder/C1.jpg" class="active" alt="Fahrzeugbeschriftung Beispiel 1">
-        <img src="bilder/C2.jpg" alt="Fahrzeugbeschriftung Beispiel 2">
-        <img src="bilder/C3.jpg" alt="Fahrzeugbeschriftung Beispiel 3">
-        <img src="bilder/C4.jpg" alt="Fahrzeugbeschriftung Beispiel 4">
+  <!-- ===== Leistungen ===== -->
+  <section>
+    <h2>Leistungen</h2>
+    <div class="leistungs-grid">
+      
+      <!-- Fahrzeugbeschriftung -->
+      <div class="card">
+        <div class="gallery">
+          <img src="C1.jpg" class="active" alt="Fahrzeugbeschriftung Beispiel 1">
+          <img src="C2.jpg" alt="Fahrzeugbeschriftung Beispiel 2">
+        </div>
+        <h3>Fahrzeugbeschriftung</h3>
+        <p>Individuelle Fahrzeugbeklebungen – mobil werben und auffallen.</p>
       </div>
-      <h3>Fahrzeugbeschriftung</h3>
-      <p>Individuelle Fahrzeugbeklebungen – mobil werben und auffallen.</p>
-    </div>
 
-    <!-- Schilder & Banner -->
-    <div class="card">
-      <div class="gallery">
-        <img src="bilder/B1.jpg" class="active" alt="Schilder Beispiel 1">
-        <img src="bilder/B2.jpg" alt="Schilder Beispiel 2">
-        <img src="bilder/B3.jpg" alt="Schilder Beispiel 3">
-        <img src="bilder/B4.jpg" alt="Schilder Beispiel 4">
+      <!-- Schilder & Banner -->
+      <div class="card">
+        <div class="gallery">
+          <img src="B1.jpg" class="active" alt="Schilder Beispiel 1">
+          <img src="B2.jpg" alt="Schilder Beispiel 2">
+          <img src="B3.jpg" alt="Schilder Beispiel 3">
+          <img src="B4.jpg" alt="Schilder Beispiel 4">
+          <img src="B5.jpg" alt="Schilder Beispiel 5">
+          <img src="B6.jpg" alt="Schilder Beispiel 6">
+        </div>
+        <h3>Schilder & Banner</h3>
+        <p>Vom Firmenschild bis zum Großformatbanner – robust und sichtbar.</p>
       </div>
-      <h3>Schilder & Banner</h3>
-      <p>Vom Firmenschild bis zum Großformatbanner – robust und sichtbar.</p>
-    </div>
 
-    <!-- Schaufensterdesign -->
-    <div class="card">
-      <div class="gallery">
-        <img src="bilder/F1.jpg" class="active" alt="Schaufensterdesign Beispiel 1">
-        <img src="bilder/F2.jpg" alt="Schaufensterdesign Beispiel 2">
-        <img src="bilder/F3.jpg" alt="Schaufensterdesign Beispiel 3">
-        <img src="bilder/F4.jpg" alt="Schaufensterdesign Beispiel 4">
+      <!-- Schaufensterdesign -->
+      <div class="card">
+        <div class="gallery">
+          <img src="F1.jpg" class="active" alt="Schaufensterdesign Beispiel 1">
+          <img src="F2.jpg" alt="Schaufensterdesign Beispiel 2">
+          <img src="F3.jpg" alt="Schaufensterdesign Beispiel 3">
+          <img src="F4.jpg" alt="Schaufensterdesign Beispiel 4">
+          <img src="F5.jpg" alt="Schaufensterdesign Beispiel 5">
+          <img src="F6.jpg" alt="Schaufensterdesign Beispiel 6">
+        </div>
+        <h3>Schaufensterdesign</h3>
+        <p>Wir gestalten Schaufenster, die ins Auge fallen und im Gedächtnis bleiben.</p>
       </div>
-      <h3>Schaufensterdesign</h3>
-      <p>Wir gestalten Schaufenster, die ins Auge fallen und im Gedächtnis bleiben.</p>
+
     </div>
-
-  </div>
-</section>
-
+  </section>
 
   <!-- ===== Footer ===== -->
   <footer>
@@ -112,9 +113,10 @@
     </p>
   </footer>
 
-  <!-- Animation für den Blur-Slogan -->
+  <!-- Animation für den Blur-Slogan + Slideshows -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // Blur-Slogan Animation
       const words = document.querySelectorAll(".slogan-blur span");
       words.forEach((word, i) => {
         word.style.animationDelay = `${i * 0.15}s`;
