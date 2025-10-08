@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <style>
     header {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -45,6 +45,7 @@
       padding: 1.5rem;
       box-shadow: var(--shadow);
       text-align: left;
+      backdrop-filter: blur(10px) saturate(1.1);
     }
 
     .card h2 {
@@ -67,6 +68,8 @@
       border: 1px solid #1f2a37;
       background: #0f172a;
       color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
     }
 
     .row {
@@ -89,9 +92,11 @@
       padding: .7rem 1rem;
       font-weight: 600;
       cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
     }
 
     .primary { background: var(--brand); color: #00131f; }
+    .primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,233,.45); }
     .ghost   { background: #0f172a; color: var(--text); border: 1px solid #1f2a37; }
     .danger  { background: var(--err); color: #fff; }
 
@@ -262,11 +267,11 @@
       function estTime(a,v,tr,ta){return v<=0?0:(a/v+tr+ta)}
 
       function compute(){
-        const A = parseFloat(g("area").value)||0;
-        const ch= parseFloat(g("rate").value)||0;
-        const v = parseFloat(g("speed").value)||1;
-        const tr= parseFloat(g("tprep").value)||0;
-        const ta= parseFloat(g("ttravel").value)||0;
+        const A=parseFloat(g("area").value)||0;
+        const ch=parseFloat(g("rate").value)||0;
+        const v=parseFloat(g("speed").value)||1;
+        const tr=parseFloat(g("tprep").value)||0;
+        const ta=parseFloat(g("ttravel").value)||0;
         const tMan=g("tmanual").value.trim();
         const tmont=tMan?parseFloat(tMan):estTime(A,v,tr,ta);
 
@@ -326,3 +331,4 @@ Montagezeit: ${r.tmont} h
   </script>
 </body>
 </html>
+
